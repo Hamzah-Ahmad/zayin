@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb://localhost/mern-authentication",
+  "mongoURI": "mongodb+srv://Hamzah:haz1996@cluster0-gpnzs.mongodb.net/Zayin?retryWrites=true&w=majority",
   "jwtSecret": "auth_secret"
 }
