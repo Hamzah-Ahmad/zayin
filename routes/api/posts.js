@@ -3,7 +3,7 @@ const router = express.Router();
 const Post = require("../../models/Post");
 const User = require("../../models/User");
 const auth = require("../../middleware/auth");
-//@route POST api/auth
+//@route POST api/posts
 //@desc Create Post
 //@access Private
 router.post("/", auth, async (req, res) => {
@@ -11,9 +11,9 @@ router.post("/", auth, async (req, res) => {
     const newPost = await Post.create({
       title: req.body.title,
       content: req.body.content,
-      author: req.user.id
+      user: req.user.id
     });
-    res.json("New Post created");
+    res.json(newPost);
   } catch (err) {
     res.json(`Error occured at post's root POST route: ${err}`);
   }
@@ -25,16 +25,16 @@ router.post("/", auth, async (req, res) => {
 router.get("/", (req, res) => {
   try {
     Post.find({})
-      .populate("author", ["name", "email"])
+      .populate("user", ["name", "email"])
       .exec((err, posts) => {
-        res.json(posts);
+        return res.json(posts);
       });
   } catch (err) {
     res.json(`Error occured at post's root GET method: ${err}`);
   }
 });
 
-//@route DELETE api/posts
+//@route DELETE api/:post
 //@desc Delete Post
 //@access Private
 router.delete("/:postId", auth, async (req, res) => {
@@ -46,7 +46,7 @@ router.delete("/:postId", auth, async (req, res) => {
   }
 });
 
-//@route PATCH api/posts
+//@route PATCH api/:postId
 //@desc Update Post
 //@access Private
 router.patch("/:postId", auth, async (req, res) => {
