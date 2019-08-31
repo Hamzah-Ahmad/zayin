@@ -48,13 +48,24 @@ router.get('/:postId', (req, res) => {
 //@route Delete api/posts/comments/:commentId
 //@desc Delete a comment
 //@access Private
-router.delete("/:postId", auth, async (req, res) => {
-    try {
-        await Post.deleteOne({ _id: req.params.postId });
-        res.json("Post deleted");
-    } catch (err) {
-        res.json(`Error occured at post's delete route: ${err}`);
-    }
+router.delete("/:commentId", auth, async (req, res) => {
+    Comment.findById(req.params.commentId).exec(async (err, comment) => {
+        if (comment.user == req.user.id) {
+            try {
+                await Comment.deleteOne({ _id: req.params.commentId });
+                res.json("Comment deleted");
+            } catch (err) {
+                res.json(`Error occured at post's delete route: ${err}`);
+            }
+        }
+        else {
+            res.json('Not authorized to delete')
+        }
+    })
+
+
+
+
 });
 
 
