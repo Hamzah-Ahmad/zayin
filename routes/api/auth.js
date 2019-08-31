@@ -25,7 +25,7 @@ router.post("/", (req, res) => {
       if (!isMatch) return res.status(400).json({ msg: "invalid credentials" });
 
       jwt.sign(
-        { id: user.id },
+        { id: user.id, name: user.name },
         config.get("jwtSecret"),
         { expiresIn: 36000 },
         (err, token) => {
