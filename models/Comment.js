@@ -8,6 +8,13 @@ const CommentSchema = new mongoose.Schema({
   userName: {
     type: String,
   },
+  post_Id: {
+    type: String
+  },
+
+  post_user: {
+    type: String
+  },
   commentText: {
     type: String,
     required: true
