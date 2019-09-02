@@ -8,7 +8,7 @@ import "./App.css";
 import store from "./store";
 import { loadUser } from "./actions/authActions";
 import AppNavbar from "./components/layout/AppNavbar";
-import Landingpage from "./components/layout/Home";
+import Home from "./components/layout/Home";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -17,7 +17,7 @@ function App() {
     <div>
       <AppNavbar />
       <Switch>
-        <Route exact path="/" component={Landingpage} />
+        <Route exact path="/" component={Home} />
         <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>
     </div>

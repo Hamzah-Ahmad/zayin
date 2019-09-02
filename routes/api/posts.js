@@ -27,7 +27,11 @@ router.get("/", (req, res) => {
     Post.find({})
       .populate("user", ["name", "email"])
       .exec((err, posts) => {
-        return res.json(posts);
+        if (posts.length > 0) {
+          return res.json(posts);
+        } else {
+          return res.json("No posts");
+        }
       });
   } catch (err) {
     res.json(`Error occured at post's root GET method: ${err}`);

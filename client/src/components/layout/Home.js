@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Alert, Container } from "reactstrap";
+import PostList from "../post/PostList";
 
-const Landingpage = props => {
-  console.log(props);
-  const { isAuthenticated, user } = props.auth;
+const Home = props => {
+  const { isAuthenticated } = props.auth;
 
   // Use this is the homepage if user not authenticated
   const guestPage = (
@@ -17,9 +17,7 @@ const Landingpage = props => {
   );
 
   // Use this is the homepage if user is authenticated
-  const homePage = (
-    <h1 className="display-3">Welcome {user ? user.name : ""}</h1>
-  );
+  const homePage = <PostList />;
   return (
     <div>
       <Container>
@@ -36,4 +34,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(Landingpage);
+export default connect(mapStateToProps)(Home);
