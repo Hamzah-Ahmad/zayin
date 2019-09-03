@@ -17,9 +17,9 @@ const PostDetail = props => {
           <h1 className="display-3">{props.post.title}</h1>
           <br />
           <h4>{props.post.content}</h4>
-          {props.post.comments.map(comment => (
+          {/* {props.post.comments.map(comment => (
             <li>{comment}</li>
-          ))}
+          ))} */}
         </div>
       ) : (
         "loading"
