@@ -38,6 +38,26 @@ router.get("/", (req, res) => {
   }
 });
 
+//@route GET api/posts/:postId
+//@desc Get Post by Id
+//@access Public
+router.get("/:postId", (req, res) => {
+  try {
+    Post.findById(req.params.postId)
+      .populate("user", ["name", "email"])
+      .exec((err, post) => {
+        if (err) return res.json(err);
+        if (post) {
+          return res.json(post);
+        } else {
+          return res.json("Post not found");
+        }
+      });
+  } catch (err) {
+    res.json(`Error occured at post's root GET method: ${err}`);
+  }
+});
+
 //@route DELETE api/:post
 //@desc Delete Post
 //@access Private

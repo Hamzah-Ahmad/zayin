@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import Profile from "./components/user/Profile";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { Route, Switch } from "react-router-dom";
+import PostDetail from "./components/post/PostDetail";
+import { Container } from "reactstrap";
+// import Profile from "./components/user/Profile";
+// import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 import "./App.css";
 
@@ -16,10 +18,13 @@ function App() {
   return (
     <div>
       <AppNavbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <ProtectedRoute exact path="/profile" component={Profile} />
-      </Switch>
+      <Container>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/posts/:postId" component={PostDetail} />
+          {/* <ProtectedRoute exact path="/profile" component={Profile} /> */}
+        </Switch>
+      </Container>
     </div>
   );
 }
