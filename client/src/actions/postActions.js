@@ -11,7 +11,7 @@ export const getPosts = () => dispatch => {
       });
     })
     .catch(err => {
-      console.log(`Error is postActions ${err}`);
+      console.log(`Error in postActions ${err}`);
       //dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
@@ -26,7 +26,7 @@ export const getPost = postId => dispatch => {
       });
     })
     .catch(err => {
-      console.log(`Error is postActions ${err}`);
+      console.log(`Error in postActions ${err}`);
       //dispatch(returnErrors(err.response.data, err.response.status));
     });
 };

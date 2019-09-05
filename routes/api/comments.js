@@ -8,52 +8,38 @@ const auth = require("../../middleware/auth");
 //@desc Post a comment
 //@access Private
 router.post("/:postId", auth, (req, res) => {
-  Post.findById(req.params.postId).then(async foundPost => {
-    try {
-      foundPost.comments.push({
-        user: req.user.id,
-        userName: req.user.name,
-        commentText: req.body.commentText,
-        post_Id: foundPost._id,
-        post_user: foundPost.user
-      });
-      await foundPost.save();
-      res.json("Comment created");
-    } catch (err) {
-      res.json("Error occured while creating comment " + err);
-    }
-  });
+  Post.findById(req.params.postId)
+    .then(async foundPost => {
+      try {
+        var comment = new CommentModel.Comment({
+          user: req.user.id,
+          userName: req.user.name,
+          commentText: req.body.commentText
+        });
+        foundPost.comments.push(comment);
+        await foundPost.save();
+
+        res.json(comment);
+      } catch (err) {
+        res.json("Error occured while creating comment " + err);
+      }
+    })
+    .catch(err => console.log("Error"));
 });
 
-//@route GET api/posts/comments/:postId
-//@desc Get the post's comments
-//@access Public
-// router.get("/:postId", (req, res) => {
-//   Post.findById(req.params.postId)
-//     .populate("comments")
-//     .exec((err, post) => {
-//       console.log(post);
-//       if (err) return err;
-//       if (post.comments.length > 0) {
-//         res.json(post.comments);
-//       } else {
-//         res.json("No comments");
-//       }
-//     });
-// });
-
-//@route Delete api/posts/comments/:commentId
+//@route Delete api/posts/comments/:postId/:commentId
 //@desc Delete a comment
 //@access Private
 router.delete("/:postId/:commentId", auth, async (req, res) => {
   Post.findById(req.params.postId).exec((err, post) => {
+    if (err) return res.json(err.response);
     const comment = post.comments.id(req.params.commentId);
     if (comment.user == req.user.id || post.user == req.user.id) {
       post.comments.id(req.params.commentId).remove();
       post.save((err, post) => {
-        if (err) return res.json(err);
+        if (err) return res.json(err.response);
         else {
-          return res.json(post);
+          return res.json(post.comments);
         }
       });
     } else {
@@ -63,4 +49,3 @@ router.delete("/:postId/:commentId", auth, async (req, res) => {
 });
 
 module.exports = router;
-//if (comment.user == req.user.id || comment.post_user == req.user.id)
