@@ -8,7 +8,6 @@ import { Button, Form, FormGroup, Input } from "reactstrap";
 const PostDetail = props => {
   const [comment, setComment] = useState("");
   const { postId } = props.match.params;
-
   // v Comment regarding useEffect parameters
   //#region
   /*
@@ -25,6 +24,7 @@ const PostDetail = props => {
   //#endregion
   useEffect(() => {
     props.getPost(postId);
+    console.log(props);
     // eslint-disable-next-line
   }, [props.comment]);
   const onSubmit = e => {
@@ -41,6 +41,7 @@ const PostDetail = props => {
           <h1 className="display-3">{props.post.title}</h1>
           <br />
           <h4 className="mb-3">{props.post.content}</h4>
+          <h4 className="mb-3">{props.post._id}</h4>
           <Form onSubmit={onSubmit}>
             <FormGroup>
               <Input
@@ -55,12 +56,17 @@ const PostDetail = props => {
           {props.post.comments.map(comment => (
             <li key={comment._id}>
               {comment.userName} : {comment.commentText}
-              <Button
-                className="ml-2"
-                onClick={() => delComment(props.post._id, comment._id)}
-              >
-                Delete
-              </Button>
+              {props.post.user._id == props.auth.user._id ||
+              comment.user == props.auth.user._id ? (
+                <Button
+                  className="ml-2"
+                  onClick={() => delComment(props.post._id, comment._id)}
+                >
+                  Delete
+                </Button>
+              ) : (
+                ""
+              )}
             </li>
           ))}
         </div>
@@ -73,7 +79,8 @@ const PostDetail = props => {
 
 const mapStateToProps = state => ({
   post: state.posts.post,
-  comment: state.comment.comments
+  comment: state.comment.comments,
+  auth: state.auth
 });
 export default withRouter(
   connect(

@@ -11,9 +11,15 @@ const PostList = props => {
 
   return (
     <div>
-      {props.posts.map(post => (
-        <Post key={post._id} post={post} />
-      ))}
+      {props.posts ? (
+        <div>
+          {props.posts.map(post => (
+            <Post key={post._id} post={post} />
+          ))}
+        </div>
+      ) : (
+        <div>No Posts Found</div>
+      )}
     </div>
   );
 };

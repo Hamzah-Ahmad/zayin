@@ -14,6 +14,7 @@ import Home from "./components/layout/Home";
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
+    console.log("load user ran");
   });
   return (
     <div>
