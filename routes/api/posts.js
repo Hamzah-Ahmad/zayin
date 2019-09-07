@@ -11,7 +11,7 @@ router.post("/", auth, async (req, res) => {
     const newPost = await Post.create({
       title: req.body.title,
       content: req.body.content,
-      user: req.user.id
+      user: req.user._id
     });
     res.json(newPost);
   } catch (err) {
@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
         if (posts.length > 0) {
           return res.json(posts);
         } else {
-          return res.json("No posts");
+          return res.json([]);
         }
       });
   } catch (err) {

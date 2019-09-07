@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
         newUser.password = hash;
         newUser.save().then(user => {
           jwt.sign(
-            { id: user.id, name: user.name },
+            { _id: user.id, name: user.name },
             config.get("jwtSecret"),
             { expiresIn: 36000 },
             (err, token) => {
@@ -40,7 +40,7 @@ router.post("/", (req, res) => {
               res.json({
                 token,
                 user: {
-                  id: user.id,
+                  _id: user.id,
                   name: user.name,
                   email: user.email
                 }

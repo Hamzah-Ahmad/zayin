@@ -12,7 +12,7 @@ router.post("/:postId", auth, (req, res) => {
     .then(async foundPost => {
       try {
         var comment = new CommentModel.Comment({
-          user: req.user.id,
+          user: req.user._id,
           userName: req.user.name,
           commentText: req.body.commentText
         });
@@ -34,7 +34,7 @@ router.delete("/:postId/:commentId", auth, async (req, res) => {
   Post.findById(req.params.postId).exec((err, post) => {
     if (err) return res.json(err.response);
     const comment = post.comments.id(req.params.commentId);
-    if (comment.user == req.user.id || post.user == req.user.id) {
+    if (comment.user == req.user._id || post.user == req.user._id) {
       post.comments.id(req.params.commentId).remove();
       post.save((err, post) => {
         if (err) return res.json(err.response);
