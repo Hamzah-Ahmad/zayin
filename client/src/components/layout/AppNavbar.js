@@ -61,7 +61,7 @@ class AppNavbar extends Component {
         <Navbar color="dark" dark expand="sm" className="mb-5">
           <Container>
             <Nav>
-              <Link to="/" className="h3">
+              <Link to="/" style={{ fontSize: "30px" }} className="navbarBrand">
                 Zayin
               </Link>
             </Nav>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Form, FormGroup, Input } from "reactstrap";
+import { Button, Form, FormGroup, Input, Card, CardBody } from "reactstrap";
 import { createPost } from "../../actions/postActions";
 
 // TODO:
@@ -18,29 +18,35 @@ const NewPost = props => {
     props.history.push("/");
   };
   return (
-    <div>
-      <Form onSubmit={submitFunc}>
-        <FormGroup>
-          <Input
-            type="text"
-            name="title"
-            required
-            value={title}
-            placeholder="Post Title"
-            onChange={e => setTitle(e.target.value)}
-          />
-          <Input
-            type="textarea"
-            name="text"
-            //required
-            value={content}
-            placeholder="Post Content"
-            onChange={e => setcontent(e.target.value)}
-          />
-        </FormGroup>
-        <Input type="submit" value="Submit" />
-      </Form>
-    </div>
+    <Card>
+      <CardBody>
+        <h3 className="mb-4">New Post: </h3>
+        <Form onSubmit={submitFunc}>
+          <FormGroup>
+            <Input
+              type="text"
+              name="title"
+              required
+              value={title}
+              placeholder="Post Title"
+              onChange={e => setTitle(e.target.value)}
+              className="mb-4"
+            />
+            <Input
+              type="textarea"
+              name="text"
+              //required
+              value={content}
+              placeholder="Post Content"
+              onChange={e => setcontent(e.target.value)}
+              className="mb-3"
+              style={{ height: 250 }}
+            />
+          </FormGroup>
+          <Button type="submit">Submit</Button>
+        </Form>
+      </CardBody>
+    </Card>
   );
 };
 

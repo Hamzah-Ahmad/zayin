@@ -3,7 +3,14 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPost } from "../../actions/postActions";
 import { postComment, deleteComment } from "../../actions/commentActions";
-import { Button, Form, FormGroup, Input } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  ListGroupItem,
+  ListGroup
+} from "reactstrap";
 
 // TODO:
 // fix the equal sign problem on line 59 and 60 (used "eslint-disabled as a temporary fix")
@@ -68,27 +75,30 @@ const PostDetail = props => {
               </span>
             </FormGroup>
           </Form>
-          <div className="commentBlock">
+          <ListGroup className="commentBlock">
             {props.post.comments.map(comment => (
-              <li key={comment._id} className="comment">
-                {comment.userName} <br />
+              <ListGroupItem key={comment._id} className="comment">
+                <div style={{ fontWeight: "bold", fontSize: "16px" }}>
+                  {comment.userName}
+                </div>
                 {comment.commentText}
                 {/* eslint-disable-next-line */}
                 {props.post.user._id == props.auth.user._id ||
                 // eslint-disable-next-line
                 comment.user == props.auth.user._id ? (
-                  <Button
-                    className="ml-2"
+                  <small
+                    className="ml-2 float-right clearfix"
                     onClick={() => delComment(props.post._id, comment._id)}
+                    style={{ fontWeight: "bold", cursor: "pointer" }}
                   >
-                    Delete
-                  </Button>
+                    X
+                  </small>
                 ) : (
                   ""
                 )}
-              </li>
+              </ListGroupItem>
             ))}
-          </div>
+          </ListGroup>
         </div>
       ) : (
         "loading"

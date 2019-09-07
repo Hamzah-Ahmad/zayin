@@ -8,12 +8,12 @@ const Home = props => {
 
   // Use this is the homepage if user not authenticated
   const guestPage = (
-    <React.Fragment>
-      <h1 className="display-1">Welcome to Zayin</h1>
+    <divt className="guestPage">
+      <h1 className="display-2 mb-5">Welcome to Zayin</h1>
       <p className="display-4">
-        Talk to the internet about your favourite topics.
+        Talk with the internet about your favourite topics.
       </p>
-    </React.Fragment>
+    </divt>
   );
 
   // Use this is the homepage if user is authenticated

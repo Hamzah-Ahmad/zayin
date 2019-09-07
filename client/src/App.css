@@ -1,9 +1,10 @@
-a {
-  color: black !important;
-}
-
 a:hover {
   text-decoration: none !important;
+}
+
+a.nav-link,
+a.navbarBrand {
+  color: white !important;
 }
 
 /* Class Styles */
@@ -12,4 +13,19 @@ a:hover {
 }
 .commentBlock {
   margin-top: 1%;
+}
+
+.guestPage {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 12em !important;
+  text-align: center;
+}
+
+.navbar-text {
+  color: white !important;
 }
