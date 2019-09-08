@@ -9,7 +9,8 @@ import {
 const initialState = {
   posts: [],
   post: null,
-  newPost: null
+  newPost: null,
+  topics: ["Science", "Politics", "Movies"]
 };
 
 export default function(state = initialState, action) {

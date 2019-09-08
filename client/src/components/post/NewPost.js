@@ -32,10 +32,12 @@ const NewPost = props => {
               onChange={e => setTopic(e.target.value)}
               className="mb-4"
             >
-              <option></option>
-              <option value="Science">Science</option>
-              <option value="Politics">Politics</option>
-              <option value="Movies">Movies</option>
+              <option hidden></option>
+              {props.topics.map(topic => (
+                <option key={topic} value={topic}>
+                  {topic}
+                </option>
+              ))}
             </Input>
             <Input
               type="text"
@@ -64,7 +66,10 @@ const NewPost = props => {
   );
 };
 
+const mapStateToProps = state => ({
+  topics: state.posts.topics
+});
 export default connect(
-  null,
+  mapStateToProps,
   { createPost }
 )(NewPost);

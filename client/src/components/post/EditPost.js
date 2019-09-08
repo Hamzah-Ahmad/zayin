@@ -36,9 +36,11 @@ const EditPost = props => {
               onChange={e => setTopic(e.target.value)}
               className="mb-4"
             >
-              <option value="Science">Science</option>
-              <option value="Politics">Politics</option>
-              <option value="Movies">Movies</option>
+              {props.topics.map(topic => (
+                <option key={topic} value={topic}>
+                  {topic}
+                </option>
+              ))}
             </Input>
             <Input
               type="text"
@@ -66,8 +68,11 @@ const EditPost = props => {
     </Card>
   );
 };
+const mapStateToProps = state => ({
+  topics: state.posts.topics
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   { editPost }
 )(EditPost);
