@@ -67,7 +67,7 @@ const PostDetail = props => {
             <div>
               <Link
                 to={{
-                  pathName: `post/edit/${props.post._id}`,
+                  pathname: `/post/edit/${props.post._id}`,
                   state: {
                     title: props.post.title,
                     content: props.post.content
