@@ -39,6 +39,25 @@ router.get("/", (req, res) => {
   }
 });
 
+//@route GET api/posts/search/:topic
+//@desc Get Posts
+//@access Public
+router.get("/search/:topic", (req, res) => {
+  try {
+    Post.find({ topic: req.params.topic })
+      .populate("user", ["name", "email"])
+      .exec((err, posts) => {
+        if (posts.length > 0) {
+          return res.json(posts);
+        } else {
+          return res.json([]);
+        }
+      });
+  } catch (err) {
+    res.json(`Error occured at post's root GET method: ${err}`);
+  }
+});
+
 //@route GET api/posts/:postId
 //@desc Get Post by Id
 //@access Public

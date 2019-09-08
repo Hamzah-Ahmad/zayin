@@ -8,20 +8,51 @@ import {
 } from "./types";
 import { tokenConfig } from "./authActions";
 
-export const getPosts = () => dispatch => {
-  axios
-    .get("/api/posts")
-    .then(res => {
-      dispatch({
-        type: GET_POSTS,
-        payload: res.data
+export const getPosts = search => dispatch => {
+  if (search === "") {
+    axios
+      .get("/api/posts")
+      .then(res => {
+        dispatch({
+          type: GET_POSTS,
+          payload: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err.response);
+        //dispatch(returnErrors(err.response.data, err.response.status));
       });
-    })
-    .catch(err => {
-      console.log(`Error in postActions ${err}`);
-      //dispatch(returnErrors(err.response.data, err.response.status));
-    });
+  } else {
+    axios
+      .get(`/api/posts/search/${search}`)
+      .then(res => {
+        dispatch({
+          type: GET_POSTS,
+          payload: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err.response);
+        //dispatch(returnErrors(err.response.data, err.response.status));
+      });
+  }
 };
+
+// export const getPostsByTopic = topic => dispatch => {
+//   console.log(topic);
+//   axios
+//     .get(`/api/posts/search/${topic}`)
+//     .then(res => {
+//       dispatch({
+//         type: GET_POSTS,
+//         payload: res.data
+//       });
+//     })
+//     .catch(err => {
+//       console.log(`Error in postActions ${err}`);
+//       //dispatch(returnErrors(err.response.data, err.response.status));
+//     });
+// };
 
 export const getPost = postId => dispatch => {
   axios
