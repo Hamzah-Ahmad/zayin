@@ -3,6 +3,8 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPost, deletePost } from "../../actions/postActions";
 import { postComment, deleteComment } from "../../actions/commentActions";
+import { likePost } from "../../actions/postActions";
+
 import {
   Button,
   Form,
@@ -37,7 +39,7 @@ const PostDetail = props => {
     props.getPost(postId);
     // console.log(props);
     // eslint-disable-next-line
-  }, [props.comment]);
+  }, [props.comment, props.likes]);
   const onSubmit = e => {
     e.preventDefault();
     props.postComment(postId, comment);
@@ -57,6 +59,10 @@ const PostDetail = props => {
     <div>
       {props.post ? (
         <div>
+          <Button onClick={() => props.likePost(props.post._id)}>
+            {props.post.likes.includes(props.auth.user._id) ? "Unlike" : "Like"}
+          </Button>
+          {props.post.likes.length}
           <h1 className="display-4">{props.post.title}</h1>
           <br />
           <div className="mb-3" style={{ fontSize: "20px" }}>
@@ -139,12 +145,13 @@ const PostDetail = props => {
 
 const mapStateToProps = state => ({
   post: state.posts.post,
+  likes: state.posts.likes,
   comment: state.comment.comments,
   auth: state.auth
 });
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPost, deletePost, postComment, deleteComment }
+    { getPost, deletePost, postComment, deleteComment, likePost }
   )(PostDetail)
 );
