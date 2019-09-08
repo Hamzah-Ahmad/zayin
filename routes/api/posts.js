@@ -11,6 +11,7 @@ router.post("/", auth, async (req, res) => {
     const newPost = await Post.create({
       title: req.body.title,
       content: req.body.content,
+      topic: req.body.topic,
       user: req.user._id
     });
     res.json(newPost);
@@ -77,7 +78,11 @@ router.patch("/:postId", auth, async (req, res) => {
   try {
     const updatedPost = await Post.updateOne(
       { _id: req.params.postId },
-      { title: req.body.title, content: req.body.content }
+      {
+        title: req.body.title,
+        content: req.body.content,
+        topic: req.body.topic
+      }
     );
     res.json(updatedPost);
   } catch (err) {

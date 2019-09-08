@@ -38,8 +38,8 @@ export const getPost = postId => dispatch => {
     });
 };
 
-export const createPost = (title, content) => (dispatch, getState) => {
-  const data = { title: title, content: content };
+export const createPost = (title, content, topic) => (dispatch, getState) => {
+  const data = { title: title, content: content, topic: topic };
   const body = JSON.stringify(data);
   axios
     .post("/api/posts", body, tokenConfig(getState))
@@ -68,8 +68,11 @@ export const deletePost = postId => (dispatch, getState) => {
     });
 };
 
-export const editPost = (postId, title, content) => (dispatch, getState) => {
-  const data = { title: title, content: content };
+export const editPost = (postId, title, content, topic) => (
+  dispatch,
+  getState
+) => {
+  const data = { title: title, content: content, topic: topic };
   const body = JSON.stringify(data);
   axios
     .patch(`/api/posts/${postId}`, body, tokenConfig(getState))

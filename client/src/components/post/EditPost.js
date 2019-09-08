@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Button, Form, FormGroup, Input, Card, CardBody } from "reactstrap";
 import { editPost } from "../../actions/postActions";
@@ -10,12 +10,13 @@ import { editPost } from "../../actions/postActions";
 const EditPost = props => {
   const [title, setTitle] = useState(props.location.state.title);
   const [content, setcontent] = useState(props.location.state.content);
+  const [topic, setTopic] = useState(props.location.state.topic);
   const postId = props.match.params.postId;
 
   //   useEffect(() => console.log(props.match.params.postId));
   const submitFunc = async e => {
     e.preventDefault();
-    await props.editPost(postId, title, content);
+    await props.editPost(postId, title, content, topic);
     setTimeout(redirectToHome, 1000);
   };
   const redirectToHome = () => {
@@ -27,6 +28,18 @@ const EditPost = props => {
         <h3 className="mb-4">Edit Post: </h3>
         <Form onSubmit={submitFunc}>
           <FormGroup>
+            <Input
+              type="select"
+              name="topic"
+              required
+              value={topic}
+              onChange={e => setTopic(e.target.value)}
+              className="mb-4"
+            >
+              <option value="Science">Science</option>
+              <option value="Politics">Politics</option>
+              <option value="Movies">Movies</option>
+            </Input>
             <Input
               type="text"
               name="title"

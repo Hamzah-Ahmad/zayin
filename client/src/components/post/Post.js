@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardText, CardBody, CardTitle } from "reactstrap";
+import { Card, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 const Post = props => {
   const { post } = props;
   // console.log(props);
@@ -11,7 +11,7 @@ const Post = props => {
           <CardTitle style={{ fontSize: "15px" }}>
             Posted by: {post.user.name}
           </CardTitle>
-          {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
+          <CardSubtitle>{post.topic}</CardSubtitle>
           <CardText>
             <Link to={`/posts/${post._id}`} style={{ fontSize: "50px" }}>
               {post.title}

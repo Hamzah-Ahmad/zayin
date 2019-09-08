@@ -62,6 +62,7 @@ const PostDetail = props => {
           <div className="mb-3" style={{ fontSize: "20px" }}>
             {props.post.content}
           </div>
+          <div>{props.post.topic}</div>
           {/* eslint-disable-next-line */}
           {props.post.user._id == props.auth.user._id ? (
             <div>
@@ -70,7 +71,8 @@ const PostDetail = props => {
                   pathname: `/post/edit/${props.post._id}`,
                   state: {
                     title: props.post.title,
-                    content: props.post.content
+                    content: props.post.content,
+                    topic: props.post.topic
                   }
                 }}
                 className="btn btn-primary"

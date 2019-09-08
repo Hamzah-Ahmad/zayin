@@ -10,9 +10,10 @@ import { createPost } from "../../actions/postActions";
 const NewPost = props => {
   const [title, setTitle] = useState("");
   const [content, setcontent] = useState("");
+  const [topic, setTopic] = useState("");
   const submitFunc = async e => {
     e.preventDefault();
-    await props.createPost(title, content);
+    await props.createPost(title, content, topic);
     setTimeout(redirectToHome, 1000);
   };
   const redirectToHome = () => {
@@ -24,6 +25,18 @@ const NewPost = props => {
         <h3 className="mb-4">New Post: </h3>
         <Form onSubmit={submitFunc}>
           <FormGroup>
+            <Input
+              type="select"
+              name="topic"
+              required
+              onChange={e => setTopic(e.target.value)}
+              className="mb-4"
+            >
+              <option></option>
+              <option value="Science">Science</option>
+              <option value="Politics">Politics</option>
+              <option value="Movies">Movies</option>
+            </Input>
             <Input
               type="text"
               name="title"
