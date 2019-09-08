@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { likePost } from "../../actions/postActions";
@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 const Post = props => {
   const { post } = props;
+  useEffect(() => console.log(props));
   // console.log(props);
   return (
     <div className="mt-3">
@@ -26,15 +27,20 @@ const Post = props => {
               {post.title}
             </Link>
           </CardText>
-          <Button onClick={() => props.likePost(post._id)}>Like</Button>
+
+          <Button onClick={() => props.likePost(post._id)}>
+            {post.likes.includes(props.auth.user._id) ? "Unlike" : "Like"}
+          </Button>
           {post.likes.length}
         </CardBody>
       </Card>
     </div>
   );
 };
-
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 export default connect(
-  null,
+  mapStateToProps,
   { likePost }
 )(Post);
