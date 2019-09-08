@@ -10,7 +10,7 @@ const PostList = props => {
     props.getPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useEffect(() => console.log(props.posts));
+  // useEffect(() => console.log(props.posts));
 
   return (
     <div>

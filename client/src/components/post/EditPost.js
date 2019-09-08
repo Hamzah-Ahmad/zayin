@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Button, Form, FormGroup, Input, Card, CardBody } from "reactstrap";
 import { createPost } from "../../actions/postActions";
@@ -7,22 +7,15 @@ import { createPost } from "../../actions/postActions";
 // Make post content a required field and fix red border which is caused by the required keyword
 // Check if removing async and await in submitFunc cause any problems. Remove if they don't.
 
-const NewPost = props => {
-  const [title, setTitle] = useState("");
-  const [content, setcontent] = useState("");
-  const submitFunc = async e => {
-    e.preventDefault();
-    await props.createPost(title, content);
-    setTimeout(redirectToHome, 1000);
-  };
-  const redirectToHome = () => {
-    props.history.push("/");
-  };
+const EditPost = props => {
+  //   const [title, setTitle] = useState("");
+  //   const [content, setcontent] = useState("");
+  useEffect(() => console.log(props));
   return (
     <Card>
       <CardBody>
         <h3 className="mb-4">New Post: </h3>
-        <Form onSubmit={submitFunc}>
+        {/* <Form onSubmit={submitFunc}>
           <FormGroup>
             <Input
               type="text"
@@ -45,7 +38,7 @@ const NewPost = props => {
             />
           </FormGroup>
           <Button type="submit">Submit</Button>
-        </Form>
+        </Form> */}
       </CardBody>
     </Card>
   );
@@ -54,4 +47,4 @@ const NewPost = props => {
 export default connect(
   null,
   { createPost }
-)(NewPost);
+)(EditPost);

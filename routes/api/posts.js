@@ -58,7 +58,7 @@ router.get("/:postId", (req, res) => {
   }
 });
 
-//@route DELETE api/:post
+//@route DELETE api/posts/:postId
 //@desc Delete Post
 //@access Private
 router.delete("/:postId", auth, async (req, res) => {
@@ -70,7 +70,7 @@ router.delete("/:postId", auth, async (req, res) => {
   }
 });
 
-//@route PATCH api/:postId
+//@route PATCH api/posts/:postId
 //@desc Update Post
 //@access Private
 router.patch("/:postId", auth, async (req, res) => {

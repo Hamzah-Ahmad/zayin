@@ -8,12 +8,12 @@ const Home = props => {
 
   // Use this is the homepage if user not authenticated
   const guestPage = (
-    <divt className="guestPage">
+    <div className="guestPage">
       <h1 className="display-2 mb-5">Welcome to Zayin</h1>
       <p className="display-4">
         Talk with the internet about your favourite topics.
       </p>
-    </divt>
+    </div>
   );
 
   // Use this is the homepage if user is authenticated

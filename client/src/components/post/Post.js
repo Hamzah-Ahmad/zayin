@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, CardText, CardBody, CardTitle } from "reactstrap";
 const Post = props => {
   const { post } = props;
-  console.log(props);
+  // console.log(props);
   return (
     <div className="mt-3">
       <Card>

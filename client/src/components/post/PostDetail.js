@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getPost } from "../../actions/postActions";
+import { getPost, deletePost } from "../../actions/postActions";
 import { postComment, deleteComment } from "../../actions/commentActions";
 import {
   Button,
@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 
 // TODO:
-// fix the equal sign problem on line 59 and 60 (used "eslint-disabled as a temporary fix")
+// fix the equal sign problem on line 59, 60 and 65 (used "eslint-disabled as a temporary fix")
 // textarea does not currently have a "requireerd" attribute because it causes a red outline. Fix both here and in the NewPost component
 
 const PostDetail = props => {
@@ -45,6 +45,14 @@ const PostDetail = props => {
   const delComment = (postId, commentId) => {
     props.deleteComment(postId, commentId);
   };
+  const delPost = postId => {
+    props.deletePost(postId);
+    setTimeout(redirectToHome, 1000);
+  };
+  const redirectToHome = () => {
+    props.history.push("/");
+  };
+
   return (
     <div>
       {props.post ? (
@@ -54,6 +62,26 @@ const PostDetail = props => {
           <div className="mb-3" style={{ fontSize: "20px" }}>
             {props.post.content}
           </div>
+          {/* eslint-disable-next-line */}
+          {props.post.user._id == props.auth.user._id ? (
+            <div>
+              <Link
+                to={{
+                  pathName: `post/edit/${props.post._id}`,
+                  state: {
+                    title: props.post.title,
+                    content: props.post.content
+                  }
+                }}
+                className="btn btn-primary"
+              >
+                Edit
+              </Link>
+              <Button onClick={() => delPost(props.post._id)}>Delete</Button>
+            </div>
+          ) : (
+            ""
+          )}
           {/* <h4 className="mb-3">{props.post._id}</h4> */}
           <Form onSubmit={onSubmit} className="clearfix">
             <FormGroup>
@@ -115,6 +143,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPost, postComment, deleteComment }
+    { getPost, deletePost, postComment, deleteComment }
   )(PostDetail)
 );
