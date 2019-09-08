@@ -3,14 +3,16 @@ import {
   GET_POST,
   CREATE_POST,
   EDIT_POST,
-  DELETE_POST
+  DELETE_POST,
+  GET_LIKES
 } from "../actions/types";
 
 const initialState = {
   posts: [],
   post: null,
   newPost: null,
-  topics: ["Science", "Politics", "Movies"]
+  topics: ["Science", "Politics", "Movies"],
+  likes: []
 };
 
 export default function(state = initialState, action) {
@@ -37,6 +39,12 @@ export default function(state = initialState, action) {
       };
     case DELETE_POST:
       return state;
+
+    case GET_LIKES:
+      return {
+        ...state,
+        likes: action.payload
+      };
     default:
       return state;
   }

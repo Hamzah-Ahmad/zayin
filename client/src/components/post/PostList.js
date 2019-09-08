@@ -10,8 +10,9 @@ const PostList = props => {
 
   useEffect(() => {
     props.getPosts(search);
+    console.log(props);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, [search, props.likes]);
 
   const onSearch = e => {
     e.preventDefault();
@@ -56,7 +57,8 @@ const PostList = props => {
 
 const mapStateToProps = state => ({
   posts: state.posts.posts,
-  topics: state.posts.topics
+  topics: state.posts.topics,
+  likes: state.posts.likes
 });
 export default connect(
   mapStateToProps,

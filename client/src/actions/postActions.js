@@ -4,7 +4,8 @@ import {
   GET_POST,
   CREATE_POST,
   EDIT_POST,
-  DELETE_POST
+  DELETE_POST,
+  GET_LIKES
 } from "./types";
 import { tokenConfig } from "./authActions";
 
@@ -116,4 +117,16 @@ export const editPost = (postId, title, content, topic) => (
     .catch(err => {
       console.log(err.response);
     });
+};
+
+export const likePost = postId => (dispatch, getState) => {
+  axios
+    .post(`/api/posts/likes/${postId}`, null, tokenConfig(getState))
+    .then(res => {
+      dispatch({
+        type: GET_LIKES,
+        payload: res.data
+      });
+    })
+    .catch(err => console.log(err.response));
 };

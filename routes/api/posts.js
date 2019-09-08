@@ -47,6 +47,7 @@ router.get("/search/:topic", (req, res) => {
     Post.find({ topic: req.params.topic })
       .populate("user", ["name", "email"])
       .exec((err, posts) => {
+        if (err) console.log(err);
         if (posts.length > 0) {
           return res.json(posts);
         } else {

@@ -1,6 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import { connect } from "react-redux";
+import { likePost } from "../../actions/postActions";
+import {
+  Button,
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle
+} from "reactstrap";
 const Post = props => {
   const { post } = props;
   // console.log(props);
@@ -17,10 +26,15 @@ const Post = props => {
               {post.title}
             </Link>
           </CardText>
+          <Button onClick={() => props.likePost(post._id)}>Like</Button>
+          {post.likes.length}
         </CardBody>
       </Card>
     </div>
   );
 };
 
-export default Post;
+export default connect(
+  null,
+  { likePost }
+)(Post);
