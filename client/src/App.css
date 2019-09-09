@@ -1,5 +1,5 @@
 a:hover {
-  text-decoration: none !important;
+  color: #575757 !important;
 }
 
 a.nav-link,
@@ -8,6 +8,14 @@ a.navbarBrand {
 }
 
 /* Class Styles */
+
+.appNavbar {
+  background-color: #ee4f2c;
+}
+
+.bgColor {
+  background-color: #ee4f2c !important;
+}
 .comment {
   list-style: none;
 }
@@ -28,4 +36,18 @@ a.navbarBrand {
 
 .navbar-text {
   color: white !important;
+}
+
+.postCardTitle {
+  font-size: 40px;
+  margin-top: 2%;
+}
+
+.topicTag {
+  text-align: center;
+  font-size: 12px;
+  width: 10%;
+  background-color: grey;
+  color: white;
+  border-radius: 8px;
 }

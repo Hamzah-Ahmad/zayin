@@ -27,7 +27,8 @@ const PostList = props => {
             name="topic"
             required
             onChange={e => setSearch(e.target.value)}
-            className="mb-4"
+            className=" clearfix mb-4"
+            style={{ width: "20%", float: "right" }}
           >
             <option hidden></option>
             {props.topics.map(topic => (
@@ -38,7 +39,7 @@ const PostList = props => {
           </Input>
         </FormGroup>
       </Form>
-      <Link to="/post/new" className="btn btn-primary">
+      <Link to="/post/new" className="bgColor btn btn-primary">
         New Post
       </Link>
       {props.posts.length > 0 ? (
@@ -49,7 +50,12 @@ const PostList = props => {
           ))}
         </div>
       ) : (
-        <div>No Posts Found</div>
+        <div
+          style={{ textAlign: "center", marginTop: "20%" }}
+          className="display-4"
+        >
+          Sorry. We didn't find any posts.
+        </div>
       )}
     </div>
   );

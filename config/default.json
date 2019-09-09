@@ -1,5 +1,5 @@
 {
-  "mongoURIOnline": "mongodb+srv://Hamzah:haz1996@cluster0-gpnzs.mongodb.net/Zayin?retryWrites=true&w=majority",
-  "mongoURI": "mongodb://localhost/zayin-local-db",
+  "mongoURILocal": "mongodb://localhost/zayin-local-db",
+  "mongoURI": "mongodb+srv://Hamzah:haz1996@cluster0-gpnzs.mongodb.net/Zayin?retryWrites=true&w=majority",
   "jwtSecret": "auth_secret"
 }

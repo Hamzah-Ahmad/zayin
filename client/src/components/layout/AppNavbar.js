@@ -58,7 +58,7 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar color="dark" dark expand="sm" className="mb-5">
+        <Navbar expand="sm" className="mb-5 appNavbar">
           <Container>
             <Nav>
               <Link to="/" style={{ fontSize: "30px" }} className="navbarBrand">

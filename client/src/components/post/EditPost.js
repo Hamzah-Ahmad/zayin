@@ -35,6 +35,7 @@ const EditPost = props => {
               value={topic}
               onChange={e => setTopic(e.target.value)}
               className="mb-4"
+              style={{ width: "20%" }}
             >
               {props.topics.map(topic => (
                 <option key={topic} value={topic}>

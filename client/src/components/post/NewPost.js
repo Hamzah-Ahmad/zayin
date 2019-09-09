@@ -31,6 +31,7 @@ const NewPost = props => {
               required
               onChange={e => setTopic(e.target.value)}
               className="mb-4"
+              style={{ width: "20%" }}
             >
               <option hidden></option>
               {props.topics.map(topic => (
@@ -59,7 +60,9 @@ const NewPost = props => {
               style={{ height: 250 }}
             />
           </FormGroup>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="bgColor">
+            Submit
+          </Button>
         </Form>
       </CardBody>
     </Card>

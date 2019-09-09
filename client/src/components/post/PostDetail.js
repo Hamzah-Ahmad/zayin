@@ -59,10 +59,23 @@ const PostDetail = props => {
     <div>
       {props.post ? (
         <div>
-          <Button onClick={() => props.likePost(props.post._id)}>
-            {props.post.likes.includes(props.auth.user._id) ? "Unlike" : "Like"}
-          </Button>
-          {props.post.likes.length}
+          <Link
+            onClick={() => props.likePost(props.post._id)}
+            style={{ marginLeft: "10px", marginRight: "5px" }}
+          >
+            {props.post.likes.includes(props.auth.user._id) ? (
+              <i
+                class="fa fa-thumbs-up"
+                style={{ fontSize: "20px", color: "#ee4f2c" }}
+              ></i>
+            ) : (
+              <i
+                class="fa fa-thumbs-up"
+                style={{ fontSize: "20px", color: "grey" }}
+              ></i>
+            )}
+          </Link>
+          <span>{props.post.likes.length}</span>
           <h1 className="display-4">{props.post.title}</h1>
           <br />
           <div className="mb-3" style={{ fontSize: "20px" }}>
