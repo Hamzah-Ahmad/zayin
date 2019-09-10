@@ -72,7 +72,7 @@ const PostDetail = props => {
         <div>
           {/* eslint-disable-next-line */}
           {props.post.user._id == props.auth.user._id ? (
-            <div className="float-right">
+            <div className="editBtn">
               <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                 <div onClick={toggle} data-toggle="dropdown"></div>
 
@@ -104,7 +104,7 @@ const PostDetail = props => {
           ) : (
             ""
           )}
-          <h1 className="display-4">{props.post.title}</h1>
+          <h1 className="postDetailsTitle">{props.post.title}</h1>
 
           <div className="topicOnDetailPage mb-3">{props.post.topic}</div>
 

@@ -37,7 +37,7 @@ const PostList = props => {
                 required
                 onChange={e => setSearch(e.target.value)}
                 className="mb-1"
-                style={{ width: "60%" }}
+                style={{ width: "150px" }}
               >
                 <option hidden></option>
                 {props.topics.map(topic => (

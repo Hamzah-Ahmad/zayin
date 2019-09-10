@@ -9,8 +9,8 @@ const Home = props => {
   // Use this is the homepage if user not authenticated
   const guestPage = (
     <div className="guestPage">
-      <h1 className="display-2 mb-5">Welcome to Zayin</h1>
-      <p className="display-4">
+      <h1 className="guestPageTitle">Welcome to Zayin</h1>
+      <p className="guestPagePara">
         Talk with the internet about your favourite topics.
       </p>
     </div>

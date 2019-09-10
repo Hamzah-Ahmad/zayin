@@ -66,7 +66,7 @@ class AppNavbar extends Component {
               </Link>
             </Nav>
 
-            <NavbarToggler onClick={this.toggle} />
+            <NavbarToggler onClick={this.toggle} className="navbar-dark" />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 {isAuthenticated ? authLinks : guestLinks}

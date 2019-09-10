@@ -44,6 +44,10 @@ a.navbarBrand {
   border-color: white;
 }
 
+.editBtn {
+  float: right;
+}
+
 .editPostLink {
   color: "black";
 }
@@ -55,8 +59,16 @@ a.navbarBrand {
   top: 30%;
   left: 50%;
   transform: translateX(-50%);
-  line-height: 12em !important;
   text-align: center;
+}
+
+.guestPageTitle {
+  font-size: 70px;
+  margin-bottom: 100px;
+}
+
+.guestPagePara {
+  font-size: 40px;
 }
 
 .navbar-text {
@@ -71,6 +83,10 @@ a.navbarBrand {
   font-size: 35px;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.postDetailsTitle {
+  font-size: 45px;
 }
 
 .topicTag {
@@ -95,12 +111,30 @@ a.navbarBrand {
 }
 
 /* media queries */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 440px) {
+  .editBtn {
+    float: none;
+  }
+
+  .guestPageTitle {
+    font-size: 50px;
+    margin-bottom: 40px;
+  }
+
+  .guestPagePara {
+    font-size: 20px;
+    width: 100%;
+  }
+
   .newPostCol {
     text-align: left;
   }
 
   .postCardTitle {
-    font-size: 1.5em;
+    font-size: 1.2em;
+  }
+
+  .postDetailsTitle {
+    font-size: 30px;
   }
 }
