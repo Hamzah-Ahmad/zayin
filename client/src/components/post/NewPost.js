@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Button, Form, FormGroup, Input, Card, CardBody } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  Card,
+  CardBody,
+  Label
+} from "reactstrap";
 import { createPost } from "../../actions/postActions";
 
 // TODO:
@@ -25,9 +33,11 @@ const NewPost = props => {
         <h3 className="mb-4">New Post: </h3>
         <Form onSubmit={submitFunc}>
           <FormGroup>
+            <Label for="search">Search topics:</Label>
             <Input
               type="select"
               name="topic"
+              id="search"
               required
               onChange={e => setTopic(e.target.value)}
               className="mb-4"
