@@ -36,7 +36,7 @@ const EditPost = props => {
         <h3 className="mb-4">Edit Post: </h3>
         <Form onSubmit={submitFunc}>
           <FormGroup>
-            <Label for="search">Search topics:</Label>
+            <Label for="search">Topic:</Label>
 
             <Input
               id="search"
