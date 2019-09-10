@@ -29,7 +29,8 @@ const Post = props => {
             onClick={() => props.likePost(post._id)}
             style={{
               background: "white",
-              border: "0px white solid"
+              border: "0px white solid",
+              paddingRight: "5px"
             }}
           >
             {post.likes.includes(props.auth.user._id) ? (
@@ -47,7 +48,10 @@ const Post = props => {
               ></i>
             )}
           </Button>
-          <span style={{ fontSize: "18px" }}> {post.likes.length}</span>
+          <span style={{ fontSize: "18px" }}>
+            {post.likes.length} <i className="fa fa-comments-o ml-4"></i>{" "}
+            {post.comments.length}
+          </span>
         </CardBody>
       </Card>
     </div>
