@@ -11,7 +11,16 @@ const initialState = {
   posts: [],
   post: null,
   newPost: null,
-  topics: ["Science", "Politics", "Movies"],
+  topics: [
+    "Science",
+    "Politics",
+    "Movies",
+    "Video Games",
+    "Music",
+    "MCU",
+    "Anime",
+    "Misc"
+  ],
   likes: []
 };
 

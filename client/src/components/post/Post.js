@@ -2,43 +2,52 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { likePost } from "../../actions/postActions";
-import { Card, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import { Button, Card, CardText, CardBody, CardTitle } from "reactstrap";
 const Post = props => {
   const { post } = props;
   // useEffect(() => console.log(props));
   return (
     <div className="mt-3">
-      <Card>
-        <CardBody>
-          <CardTitle style={{ fontSize: "15px", textDecoration: "underline" }}>
+      <Card style={{ borderRadius: "15px" }}>
+        <CardBody style={{ paddingBottom: "0px", paddingTop: "0.1rem" }}>
+          <CardTitle
+            style={{
+              fontSize: "13px",
+              marginBottom: "0px"
+            }}
+          >
             Posted by: {post.user.name}
+            <div className="topicTag ">{post.topic}</div>
           </CardTitle>
-          <CardSubtitle className="topicTag">{post.topic}</CardSubtitle>
+
           <CardText className="postCardTitle">
-            <Link
-              to={`/posts/${post._id}`}
-              style={{ fontSize: "40px", color: "#383838" }}
-            >
+            <Link to={`/posts/${post._id}`} style={{ color: "#383838" }}>
               {post.title}
             </Link>
           </CardText>
-          <Link
+          <Button
             onClick={() => props.likePost(post._id)}
-            style={{ marginLeft: "10px", marginRight: "5px" }}
+            style={{
+              background: "white",
+              border: "0px white solid"
+            }}
           >
             {post.likes.includes(props.auth.user._id) ? (
               <i
-                class="fa fa-thumbs-up"
-                style={{ fontSize: "20px", color: "#ee4f2c" }}
+                className="fa fa-thumbs-up"
+                style={{ fontSize: "18px", color: "#ee4f2c" }}
               ></i>
             ) : (
               <i
-                class="fa fa-thumbs-up"
-                style={{ fontSize: "20px", color: "grey" }}
+                className="fa fa-thumbs-up"
+                style={{
+                  fontSize: "18px",
+                  color: "grey"
+                }}
               ></i>
             )}
-          </Link>
-          <span style={{ fontSize: "20px" }}> {post.likes.length}</span>
+          </Button>
+          <span style={{ fontSize: "18px" }}> {post.likes.length}</span>
         </CardBody>
       </Card>
     </div>

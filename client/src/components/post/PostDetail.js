@@ -11,7 +11,13 @@ import {
   FormGroup,
   Input,
   ListGroupItem,
-  ListGroup
+  ListGroup,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Row,
+  Col
 } from "reactstrap";
 
 // TODO:
@@ -20,6 +26,7 @@ import {
 
 const PostDetail = props => {
   const [comment, setComment] = useState("");
+  const [dropdownOpen, setDropDownOpen] = useState(false);
   const { postId } = props.match.params;
   // v Comment regarding useEffect parameters
   //#region
@@ -55,56 +62,78 @@ const PostDetail = props => {
     props.history.push("/");
   };
 
+  const toggle = () => {
+    setDropDownOpen(!dropdownOpen);
+  };
+
   return (
     <div>
       {props.post ? (
         <div>
-          <Link
-            onClick={() => props.likePost(props.post._id)}
-            style={{ marginLeft: "10px", marginRight: "5px" }}
-          >
-            {props.post.likes.includes(props.auth.user._id) ? (
-              <i
-                class="fa fa-thumbs-up"
-                style={{ fontSize: "20px", color: "#ee4f2c" }}
-              ></i>
-            ) : (
-              <i
-                class="fa fa-thumbs-up"
-                style={{ fontSize: "20px", color: "grey" }}
-              ></i>
-            )}
-          </Link>
-          <span>{props.post.likes.length}</span>
-          <h1 className="display-4">{props.post.title}</h1>
-          <br />
-          <div className="mb-3" style={{ fontSize: "20px" }}>
-            {props.post.content}
-          </div>
-          <div>{props.post.topic}</div>
           {/* eslint-disable-next-line */}
           {props.post.user._id == props.auth.user._id ? (
-            <div>
-              <Link
-                to={{
-                  pathname: `/post/edit/${props.post._id}`,
-                  state: {
-                    title: props.post.title,
-                    content: props.post.content,
-                    topic: props.post.topic
-                  }
-                }}
-                className="btn btn-primary"
-              >
-                Edit
-              </Link>
-              <Button onClick={() => delPost(props.post._id)}>Delete</Button>
+            <div className="float-right">
+              <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                <div onClick={toggle} data-toggle="dropdown"></div>
+
+                <DropdownToggle className="customBtn">
+                  <i className="fa fa-edit"></i>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>
+                    <Link
+                      to={{
+                        pathname: `/post/edit/${props.post._id}`,
+                        state: {
+                          title: props.post.title,
+                          content: props.post.content,
+                          topic: props.post.topic
+                        }
+                      }}
+                      style={{ color: "black" }}
+                    >
+                      Edit
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <div onClick={() => delPost(props.post._id)}>Delete</div>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </div>
           ) : (
             ""
           )}
-          {/* <h4 className="mb-3">{props.post._id}</h4> */}
-          <Form onSubmit={onSubmit} className="clearfix">
+          <h1 className="display-4">{props.post.title}</h1>
+
+          <div className="topicOnDetailPage mb-3">{props.post.topic}</div>
+
+          <div className="mb-3" style={{ fontSize: "20px" }}>
+            {props.post.content}
+          </div>
+
+          <Button
+            onClick={() => props.likePost(props.post._id)}
+            style={{
+              background: "white",
+              border: "0px white solid"
+            }}
+          >
+            {props.post.likes.includes(props.auth.user._id) ? (
+              <i
+                className="fa fa-thumbs-up "
+                style={{ fontSize: "20px", color: "#ee4f2c" }}
+              ></i>
+            ) : (
+              <i
+                className="fa fa-thumbs-up"
+                style={{ fontSize: "20px", color: "grey" }}
+              ></i>
+            )}
+          </Button>
+          <span>{props.post.likes.length}</span>
+
+          <Form onSubmit={onSubmit} className="clearfix mt-3">
             <FormGroup>
               <Input
                 type="textarea"
@@ -115,10 +144,7 @@ const PostDetail = props => {
                 placeholder="Add Comment"
               />
               <span className="input-group-btn">
-                <Button
-                  className="btn btn-default mt-1 float-right"
-                  type="submit"
-                >
+                <Button className="btn mt-1 float-right bgColor" type="submit">
                   Submit
                 </Button>
               </span>
@@ -126,25 +152,35 @@ const PostDetail = props => {
           </Form>
           <ListGroup className="commentBlock">
             {props.post.comments.map(comment => (
-              <ListGroupItem key={comment._id} className="comment">
-                <div style={{ fontWeight: "bold", fontSize: "16px" }}>
-                  {comment.userName}
-                </div>
+              <ListGroupItem
+                key={comment._id}
+                className="comment"
+                style={{ backgroundColor: "#f5f5f5" }}
+              >
+                <Row>
+                  <Col xs="11" style={{ fontSize: "20px" }}>
+                    <div style={{ fontWeight: "bold" }}>{comment.userName}</div>
+                  </Col>
+                  {/* eslint-disable-next-line */}
+                  {props.post.user._id == props.auth.user._id ||
+                  // eslint-disable-next-line
+                  comment.user == props.auth.user._id ? (
+                    <Col
+                      xs="1"
+                      onClick={() => delComment(props.post._id, comment._id)}
+                      style={{
+                        fontWeight: "bold",
+                        cursor: "pointer",
+                        textAlign: "right"
+                      }}
+                    >
+                      X
+                    </Col>
+                  ) : (
+                    ""
+                  )}
+                </Row>
                 {comment.commentText}
-                {/* eslint-disable-next-line */}
-                {props.post.user._id == props.auth.user._id ||
-                // eslint-disable-next-line
-                comment.user == props.auth.user._id ? (
-                  <small
-                    className="ml-2 float-right clearfix"
-                    onClick={() => delComment(props.post._id, comment._id)}
-                    style={{ fontWeight: "bold", cursor: "pointer" }}
-                  >
-                    X
-                  </small>
-                ) : (
-                  ""
-                )}
               </ListGroupItem>
             ))}
           </ListGroup>

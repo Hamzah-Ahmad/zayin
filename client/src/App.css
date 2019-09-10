@@ -13,6 +13,12 @@ a.navbarBrand {
   background-color: #ee4f2c;
 }
 
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 .bgColor {
   background-color: #ee4f2c !important;
 }
@@ -21,6 +27,25 @@ a.navbarBrand {
 }
 .commentBlock {
   margin-top: 1%;
+}
+
+.customBtn {
+  background-color: white !important;
+  color: black;
+}
+
+.customBtn.btn-secondary {
+  color: black !important;
+  border: none;
+  font-size: 25px;
+}
+
+.customBtn.btn-secondary:hover {
+  border-color: white;
+}
+
+.editPostLink {
+  color: "black";
 }
 
 .guestPage {
@@ -38,16 +63,43 @@ a.navbarBrand {
   color: white !important;
 }
 
+.newPostCol {
+  text-align: right;
+}
+
 .postCardTitle {
-  font-size: 40px;
-  margin-top: 2%;
+  font-size: 35px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .topicTag {
   text-align: center;
   font-size: 12px;
-  width: 10%;
+  background-color: #cccccc;
+  /* color: white; */
+  display: inline;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 30px;
+}
+
+/* .topicOnDetailPage {
+  text-align: center;
+  font-size: 14px;
+  width: 80px;
   background-color: grey;
   color: white;
   border-radius: 8px;
+} */
+
+/* media queries */
+@media only screen and (max-width: 400px) {
+  .newPostCol {
+    text-align: left;
+  }
+
+  .postCardTitle {
+    font-size: 1.5em;
+  }
 }
