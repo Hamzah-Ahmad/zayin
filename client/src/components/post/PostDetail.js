@@ -46,11 +46,16 @@ const PostDetail = props => {
     props.getPost(postId);
     // console.log(props);
     // eslint-disable-next-line
+
   }, [props.comment, props.likes]);
   const onSubmit = e => {
     e.preventDefault();
     props.postComment(postId, comment);
+    document.getElementById("comment").value = "";
+
   };
+
+
   const delComment = (postId, commentId) => {
     props.deleteComment(postId, commentId);
   };
@@ -102,8 +107,8 @@ const PostDetail = props => {
               </Dropdown>
             </div>
           ) : (
-            ""
-          )}
+              ""
+            )}
           <h1 className="postDetailsTitle">{props.post.title}</h1>
 
           <div className="topicOnDetailPage mb-3">{props.post.topic}</div>
@@ -125,11 +130,11 @@ const PostDetail = props => {
                 style={{ fontSize: "20px", color: "#ee4f2c" }}
               ></i>
             ) : (
-              <i
-                className="fa fa-thumbs-up"
-                style={{ fontSize: "20px", color: "grey" }}
-              ></i>
-            )}
+                <i
+                  className="fa fa-thumbs-up"
+                  style={{ fontSize: "20px", color: "grey" }}
+                ></i>
+              )}
           </Button>
           <span>{props.post.likes.length}</span>
 
@@ -139,7 +144,8 @@ const PostDetail = props => {
                 type="textarea"
                 // required
                 name="comment"
-                value={comment}
+                //value={comment}
+                id="comment"
                 onChange={e => setComment(e.target.value)}
                 placeholder="Add Comment"
               />
@@ -163,22 +169,22 @@ const PostDetail = props => {
                   </Col>
                   {/* eslint-disable-next-line */}
                   {props.post.user._id == props.auth.user._id ||
-                  // eslint-disable-next-line
-                  comment.user == props.auth.user._id ? (
-                    <Col
-                      xs="1"
-                      onClick={() => delComment(props.post._id, comment._id)}
-                      style={{
-                        fontWeight: "bold",
-                        cursor: "pointer",
-                        textAlign: "right"
-                      }}
-                    >
-                      X
+                    // eslint-disable-next-line
+                    comment.user == props.auth.user._id ? (
+                      <Col
+                        xs="1"
+                        onClick={() => delComment(props.post._id, comment._id)}
+                        style={{
+                          fontWeight: "bold",
+                          cursor: "pointer",
+                          textAlign: "right"
+                        }}
+                      >
+                        X
                     </Col>
-                  ) : (
-                    ""
-                  )}
+                    ) : (
+                      ""
+                    )}
                 </Row>
                 {comment.commentText}
               </ListGroupItem>
@@ -186,8 +192,8 @@ const PostDetail = props => {
           </ListGroup>
         </div>
       ) : (
-        "loading"
-      )}
+          "loading"
+        )}
     </div>
   );
 };
