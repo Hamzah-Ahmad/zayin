@@ -41,7 +41,7 @@ const NewPost = props => {
               required
               onChange={e => setTopic(e.target.value)}
               className="mb-4"
-              style={{ width: "150px" }}
+              style={{ width: "160px" }}
             >
               <option hidden></option>
               {props.topics.map(topic => (

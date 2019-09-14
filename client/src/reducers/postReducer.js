@@ -15,6 +15,7 @@ const initialState = {
     "Science",
     "Politics",
     "Movies",
+    "TV Series",
     "Video Games",
     "Music",
     "MCU",
@@ -24,7 +25,7 @@ const initialState = {
   likes: []
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_POSTS:
       return {

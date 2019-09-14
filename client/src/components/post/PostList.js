@@ -38,7 +38,7 @@ const PostList = props => {
                 required
                 onChange={e => setSearch(e.target.value)}
                 className="mb-1"
-                style={{ width: "150px" }}
+                style={{ width: "160px" }}
               >
                 <option hidden></option>
                 {props.topics.map(topic => (
@@ -74,13 +74,13 @@ const PostList = props => {
           ))}
         </div>
       ) : (
-        <div
-          style={{ textAlign: "center", marginTop: "20%" }}
-          className="display-4"
-        >
-          Sorry. We didn't find any posts.
+          <div
+            style={{ textAlign: "center", marginTop: "20%" }}
+            className="display-4"
+          >
+            Sorry. We didn't find any posts.
         </div>
-      )}
+        )}
     </div>
   );
 };

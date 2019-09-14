@@ -25,7 +25,7 @@ router.post("/", auth, async (req, res) => {
 //@access Public
 router.get("/", (req, res) => {
   try {
-    Post.find({})
+    Post.find({}).sort({ date: -1 })
       .populate("user", ["name", "email"])
       .exec((err, posts) => {
         if (posts.length > 0) {
@@ -44,7 +44,7 @@ router.get("/", (req, res) => {
 //@access Public
 router.get("/search/:topic", (req, res) => {
   try {
-    Post.find({ topic: req.params.topic })
+    Post.find({ topic: req.params.topic }).sort({ date: -1 })
       .populate("user", ["name", "email"])
       .exec((err, posts) => {
         if (err) console.log(err);
