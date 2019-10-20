@@ -75,7 +75,7 @@ const GuestPage = props => {
         </Col>
       </Row>
       <h3 style={{ fontFamily: "Candara" }}>
-        Register or Sign in to read full posts, create your own posts like and
+        Register or Sign in to read full posts, create your own posts, like and
         comment!
       </h3>
       {props.posts.length > 0 ? (
