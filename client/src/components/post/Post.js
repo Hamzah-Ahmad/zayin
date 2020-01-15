@@ -60,7 +60,4 @@ const Post = props => {
 const mapStateToProps = state => ({
   auth: state.auth
 });
-export default connect(
-  mapStateToProps,
-  { likePost }
-)(Post);
+export default connect(mapStateToProps, { likePost })(Post);

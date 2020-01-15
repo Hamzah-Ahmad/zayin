@@ -25,7 +25,7 @@ const initialState = {
   likes: []
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_POSTS:
       return {
@@ -44,8 +44,8 @@ export default function (state = initialState, action) {
       };
     case EDIT_POST:
       return {
-        ...state,
-        newPost: action.payload
+        ...state
+        //newPost: action.payload
       };
     case DELETE_POST:
       return state;
