@@ -4,11 +4,11 @@ const config = require("config");
 const path = require("path");
 
 const app = express();
-const db = config.get("mongoURI");
+// const db = config.get("mongoURI");
 app.use(express.json());
 
 mongoose
-  .connect(db, {
+  .connect(proces.env.DATABASE_URL, {
     useNewUrlParser: true,
     useCreateIndex: true
   })
