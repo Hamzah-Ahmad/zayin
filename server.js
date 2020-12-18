@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 mongoose
-  .connect(proces.env.DATABASE_URL, {
+  .connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useCreateIndex: true
   })
